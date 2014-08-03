@@ -17,34 +17,6 @@ private:
 	T* data;
 };
 
-//template <class T>
-//void HeapSorter<T>::heapSort(T* input, int s)
-//{
-//	size = s;
-//	data = input;
-//
-//	
-//	bool made_swaps = false;
-//	do
-//	{
-//		made_swaps = false;
-//		for (int i = size - 1; i >= 0; --i)
-//		{
-//			if (reheap_up(i)) made_swaps = true;
-//		}
-//	} while (made_swaps);
-//	
-//
-//
-//	for (int i = size - 1; i >= 0; --i)
-//	{
-//		T temp = data[i];
-//		data[i] = data[0];
-//		data[0] = temp;
-//		reheap_down(0, i - 1);
-//	}
-//}
-
 template <class T>
 bool HeapSorter<T>::reheap_up(int index, bool made_swap)
 {
@@ -58,30 +30,6 @@ bool HeapSorter<T>::reheap_up(int index, bool made_swap)
 	}
 	return made_swap;
 }
-
-//template <class T>
-//void HeapSorter<T>::reheap_down(int index, int last_index)
-//{
-//	int left_child_index = index * 2 + 1;
-//	int right_child_index = index * 2 + 2;
-//	int child_index = -1;
-//	if (right_child_index <= last_index)
-//	{
-//		child_index = (data[left_child_index] > data[right_child_index]) ? left_child_index : right_child_index;
-//	}
-//	else if (left_child_index <= last_index)
-//	{
-//		child_index = left_child_index;
-//	}
-//
-//	if (child_index > 0 && data[child_index] > data[index])
-//	{
-//		T temp = data[index];
-//		data[index] = data[child_index];
-//		data[child_index] = temp;
-//		reheap_down(child_index, last_index);
-//	}
-//}
 
 template <class T>
 void HeapSorter<T>::heapSort(T* input, int size)
