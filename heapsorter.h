@@ -8,8 +8,6 @@ public:
 	void heapSort(T*, int);
 
 private:
-	bool reheap_up(int, bool = false);
-
 	void heapify();
 	void reheap_down(int, int);
 
@@ -17,19 +15,6 @@ private:
 	T* data;
 };
 
-template <class T>
-bool HeapSorter<T>::reheap_up(int index, bool made_swap)
-{
-	int parent_index = (index == 0) ? -1 : (index - 1) / 2;
-	if (parent_index >= 0 && data[index] > data[parent_index])
-	{
-		T temp = data[parent_index];
-		data[parent_index] = data[index];
-		data[index] = temp;
-		return reheap_up(parent_index, true);
-	}
-	return made_swap;
-}
 
 template <class T>
 void HeapSorter<T>::heapSort(T* input, int size)
