@@ -5,6 +5,7 @@
 #include "mergesorter.h"
 #include "selectionsorter.h"
 #include "heapsorter.h"
+#include "bogosorter.h"
 
 #define ARRAY_SIZE 1000000
 
@@ -66,7 +67,18 @@ void sort()
 	after = clock();
 	cout << "Selection Sorting " << size << " elements took: " << (float)(after - before) / CLOCKS_PER_SEC << "s. O(n^2)\n";
 
-
+	//Bogo Sort
+	size = 10;
+	BogoSorter<int> bogo_sorter;
+	list = new int[size];
+	for (int i = 0; i < size; ++i)
+	{
+		list[i] = rand() % size;
+	}
+	before = clock();
+	bogo_sorter.bogoSort(list, size);
+	after = clock();
+	cout << "Bogo Sorting " << size << " elements took: " << (float)(after - before) / CLOCKS_PER_SEC << "s. O(n*n!)\n";
 }
 
 template <typename T>
