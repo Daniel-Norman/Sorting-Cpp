@@ -8,46 +8,40 @@ public:
 	void heapSort(T*, int);
 
 private:
-	void heapify();
-	void reheap_down(int, int);
-
-	int size;
-	T* data;
+	void heapify(T*, int);
+	void reheap_down(T*, int, int);
 };
 
 
 template <class T>
-void HeapSorter<T>::heapSort(T* input, int size)
+void HeapSorter<T>::heapSort(T* data, int size)
 {
-	this->size = size;
-	this->data = input;
-
-	heapify(); //Make sure the data follows the heap property
+	heapify(data, size); //Make sure the data follows the heap property
 
 	int high = size - 1; //Store the last index of the unsorted data
 	while (high > 0)
 	{
-		int temp = data[high];
+		T temp = data[high];
 		data[high] = data[0]; //Place max element (at data[0] after heapify) at our high index
 		data[0] = temp; //Place the previous element at high index at index 0
 		--high;
-		reheap_down(0, high); //Ensure the unsorted data follows the heap property
+		reheap_down(data, 0, high); //Ensure the unsorted data follows the heap property
 	}
 }
 
 template <class T>
-void HeapSorter<T>::heapify()
+void HeapSorter<T>::heapify(T* data, int size)
 {
-	int middle_index = (size - 2) / 2; //Last index's parent: (child - 1) / 2
+	int middle_index = (size - 2) / 2; //Middle index is last index's parent. Parent index given by: (child_index - 1) / 2
 	while (middle_index >= 0)
 	{
-		reheap_down(middle_index, size - 1);
+		reheap_down(data, middle_index, size - 1);
 		--middle_index;
 	}
 }
 
 template <class T>
-void HeapSorter<T>::reheap_down(int low, int high)
+void HeapSorter<T>::reheap_down(T* data, int low, int high)
 {
 	int index = low;
 	while (index * 2 + 1 <= high)

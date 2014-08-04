@@ -53,9 +53,13 @@ void sort()
 	heap_sorter.heapSort(list, size);
 	after = clock();
 	cout << "Heap Sorting " << size << " elements took: " << (float)(after - before) / CLOCKS_PER_SEC << "s. O(nlogn)\n";
+	for (int i = 0; i < size; ++i)
+	{
+		//cout << list[i] << ((i + 1) % 10 == 0 ? "\n" : " ");
+	}
 
 	//Selection Sort
-	size = 1 << 15;
+	size = 1 << 10;
 	SelectionSorter<int> selection_sorter;
 	list = new int[size];
 	for (int i = 0; i < size; ++i)
@@ -68,7 +72,7 @@ void sort()
 	cout << "Selection Sorting " << size << " elements took: " << (float)(after - before) / CLOCKS_PER_SEC << "s. O(n^2)\n";
 
 	//Bogo Sort
-	size = 10;
+	size = 1 << 2;
 	BogoSorter<int> bogo_sorter;
 	list = new int[size];
 	for (int i = 0; i < size; ++i)
