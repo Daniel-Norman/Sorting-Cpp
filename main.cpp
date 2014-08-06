@@ -6,6 +6,7 @@
 #include "selectionsorter.h"
 #include "heapsorter.h"
 #include "bogosorter.h"
+#include "quicksorter.h"
 
 #define ARRAY_SIZE 1000000
 
@@ -19,6 +20,42 @@ int main()
 	sort();
 	system("PAUSE");
 	return 0;
+}
+
+int partition(int* input, int p, int r)
+{
+	int pivot = input[r];
+
+	while (p < r)
+	{
+		while (input[p] < pivot)
+			p++;
+
+		while (input[r] > pivot)
+			r--;
+
+		if (input[p] == input[r])
+			p++;
+		else if (p < r)
+		{
+			int tmp = input[p];
+			input[p] = input[r];
+			input[r] = tmp;
+		}
+	}
+
+	return r;
+}
+
+// The quicksort recursive function
+void quicksort(int* input, int p, int r)
+{
+	if (p < r)
+	{
+		int j = partition(input, p, r);
+		quicksort(input, p, j - 1);
+		quicksort(input, j + 1, r);
+	}
 }
 
 void sort()
@@ -53,6 +90,23 @@ void sort()
 	heap_sorter.heapSort(list, size);
 	after = clock();
 	cout << "Heap Sorting " << size << " elements took: " << (float)(after - before) / CLOCKS_PER_SEC << "s. O(nlogn)\n";
+	for (int i = 0; i < size; ++i)
+	{
+		//cout << list[i] << ((i + 1) % 10 == 0 ? "\n" : " ");
+	}
+
+	//Quick Sort
+	size = 1 << 20;
+	QuickSorter<int> quick_sorter;
+	list = new int[size];
+	for (int i = 0; i < size; ++i)
+	{
+		list[i] = (rand() * (RAND_MAX + 1) + rand()) % size;
+	}
+	before = clock();
+	quick_sorter.quickSort(list, size);
+	after = clock();
+	cout << "Quick Sorting " << size << " elements took: " << (float)(after - before) / CLOCKS_PER_SEC << "s. O(nlogn)\n";
 	for (int i = 0; i < size; ++i)
 	{
 		//cout << list[i] << ((i + 1) % 10 == 0 ? "\n" : " ");
