@@ -26,7 +26,7 @@ void MergeSorter<T>::mergeSort(T* input, T* temp, int begin, int end)
 {
 	if (end - begin <= 1) return;
 
-	int middle = (end + begin) / 2;
+	int middle = begin + (end - begin) / 2;
 	mergeSort(input, temp, begin, middle); //Sort the left half between begin and end
 	mergeSort(input, temp, middle, end); //Sort the right half between begin and end
 	mergeArray(input, temp, begin, middle, end); //Merge the two halves

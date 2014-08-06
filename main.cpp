@@ -77,6 +77,10 @@ void sort()
 	merge_sorter.mergeSort(list, size);
 	after = clock();
 	cout << "Merge Sorting " << size << " elements took: " << (float)(after - before) / CLOCKS_PER_SEC << "s. O(nlogn)\n";
+	for (int i = 0; i < size; ++i)
+	{
+		//cout << list[i] << ((i + 1) % 10 == 0 ? "\n" : " ");
+	}
 
 	//Heap Sort
 	size = 1 << 20;

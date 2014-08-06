@@ -44,7 +44,7 @@ template <class T>
 void HeapSorter<T>::reheap_down(T* data, int low, int high)
 {
 	int index = low;
-	while (index * 2 + 1 <= high)
+	while (index < (INT_MAX / 2 - 1) && index * 2 + 1 <= high)
 	{
 		int left_child_index = index * 2 + 1;
 		int right_child_index = index * 2 + 2;
