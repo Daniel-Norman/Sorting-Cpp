@@ -61,7 +61,8 @@ void quicksort(int* input, int p, int r)
 void sort()
 {
 	srand(time(NULL));
-	clock_t before, after;
+	clock_t before;
+	clock_t after;
 	int size;
 	int* list;
 
